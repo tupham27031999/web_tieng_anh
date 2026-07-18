@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Vocabulary Tree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>📚 VocabTree</h2>
+            <span class="version-badge">v2.0</span>
+        </div>
+        
+        <!-- Search and stats -->
+        <div class="search-wrapper">
+            <input type="text" id="treeSearch" placeholder="Search title, meaning, tags..." oninput="handleSearch()">
+            <span class="search-icon">🔍</span>
+        </div>
+        
+        <div class="stats-dashboard" id="statsDashboard">
+            <!-- Dynamically populated stats -->
+        </div>
+
+        <div id="tree" class="tree-container"></div>
+        
+        <div class="sidebar-footer">
+            <button id="addRootBtn" class="btn-primary">
+                <span class="btn-icon">+</span> Add New Topic
+            </button>
+        </div>
+    </aside>
+    
+    <main class="content">
+        <div id="editor" class="editor-container">
+            <div class="empty-state">
+                <div class="empty-icon">🌱</div>
+                <h3>Start Learning</h3>
+                <p>Select a node from the tree or create a new topic to start editing.</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Flashcard Review Modal -->
+<div id="flashcard-modal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>🎴 Flashcard Review</h3>
+            <button class="modal-close-btn" onclick="closeFlashcards()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="flashcard-scene">
+                <div class="flashcard" onclick="flipCard()">
+                    <!-- Front of card -->
+                    <div class="flashcard-side flashcard-front">
+                        <div class="card-inner-content">
+                            <span class="card-node-type" id="fc-type">Vocabulary</span>
+                            <h1 class="card-title" id="fc-title">Word</h1>
+                            <p class="card-phonetic" id="fc-phonetic">/phonetic/</p>
+                            <div class="card-hint">
+                                <span class="hint-icon">💡</span> Click card to flip
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Back of card -->
+                    <div class="flashcard-side flashcard-back">
+                        <div class="card-inner-content">
+                            <div class="back-field">
+                                <span class="back-label">Meaning</span>
+                                <p class="back-value highlight-text" id="fc-meaning">Nghĩa của từ</p>
+                            </div>
+                            <div class="back-field" id="fc-example-group">
+                                <span class="back-label">Example</span>
+                                <p class="back-value italic-text" id="fc-example">Example sentence goes here</p>
+                            </div>
+                            <div class="back-field" id="fc-note-group">
+                                <span class="back-label">Note</span>
+                                <p class="back-value" id="fc-note">Notes go here</p>
+                            </div>
+                            
+                            <!-- Synonyms & Antonyms -->
+                            <div class="back-tags-grid">
+                                <div id="fc-synonyms-group">
+                                    <span class="back-label">Synonyms</span>
+                                    <div class="tag-pill-container" id="fc-synonyms"></div>
+                                </div>
+                                <div id="fc-antonyms-group">
+                                    <span class="back-label">Antonyms</span>
+                                    <div class="tag-pill-container" id="fc-antonyms"></div>
+                                </div>
+                            </div>
+
+                            <!-- Media inside Flashcard -->
+                            <div class="flashcard-media">
+                                <div id="fc-audio-container" class="fc-audio-list"></div>
+                                <div id="fc-image-container" class="fc-image-gallery"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" id="fc-prev-btn" onclick="prevCard()">&larr; Prev</button>
+            <div class="progress-container">
+                <span class="progress-text" id="fc-progress-text">0 / 0</span>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="fc-progress-bar"></div>
+                </div>
+            </div>
+            <button class="btn-primary" id="fc-next-btn" onclick="nextCard()">Next &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<!-- Image Lightbox Zoom Modal -->
+<div id="image-lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" alt="Enlarged view">
+</div>
+
+<script>
+    const FIELDS = {{ fields|tojson }};
+    const NODE_TYPES = {{ node_types|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
+

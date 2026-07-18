@@ -1,0 +1,31 @@
+python -m venv venv
+.\venv\Scripts\Activate.ps1 - powershell
+.\venv\Scripts\activate.bat - cmd
+c:\tupn\code\web_hoc_tieng\venv\Scripts\python.exe -m pip install -r requirements.txt
+
+
+
+
+Bước 2: Thiết lập môi trường ảo khi triển khai lên PythonAnywhere
+Khi triển khai lên PythonAnywhere, bạn không upload thư mục venv từ máy cá nhân lên (vì thư mục ảo ở Windows không tương thích với hệ điều hành Linux của PythonAnywhere). Thay vào đó, bạn sẽ tạo một môi trường ảo mới trực tiếp trên PythonAnywhere bằng cách:
+
+Mở Bash Console trên PythonAnywhere.
+Tạo môi trường ảo bằng lệnh mkvirtualenv (PythonAnywhere hỗ trợ sẵn công cụ này):
+bash
+
+
+mkvirtualenv --python=/usr/bin/python3.11.3 vocabtree-env
+(Bạn có thể thay thế 3.10 bằng phiên bản Python mong muốn mà PythonAnywhere hỗ trợ).
+Sau khi môi trường ảo được kích hoạt trên Console của PythonAnywhere, di chuyển vào thư mục code và cài đặt các thư viện:
+bash
+
+
+pip install -r requirements.txt
+Đi tới tab Web trên trang quản trị PythonAnywhere, kéo xuống phần Virtualenv và điền đường dẫn môi trường ảo bạn vừa tạo:
+text
+
+
+/home/tên-tài-khoản/.virtualenvs/vocabtree-env
+Tệp 
+requirements.txt
+ tôi vừa tạo sẽ là cầu nối giúp bạn đồng bộ mọi thư viện giữa máy cục bộ và PythonAnywhere một cách nhanh chóng nhất!

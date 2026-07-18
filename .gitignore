@@ -1,0 +1,23 @@
+# Virtual Environment
+venv/
+env/
+.venv/
+.env/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# User Uploads (Images & Audio)
+uploads/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

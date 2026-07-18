@@ -1,0 +1,42 @@
+[
+    {
+        "antonyms": "",
+        "audio": [],
+        "children": [
+            {
+                "antonyms": "",
+                "audio": [
+                    {
+                        "name": "[TTS-EN] Transport.mp3",
+                        "url": "/uploads/audio/1784335265_tts_en.mp3"
+                    },
+                    {
+                        "name": "[TTS-EN] we were taken to next the city by bus.mp3",
+                        "url": "/uploads/audio/1784335286_tts_en.mp3"
+                    }
+                ],
+                "children": [],
+                "example": "we were taken to next the city by bus",
+                "expanded": true,
+                "id": 1784335088174,
+                "image": [],
+                "meaning": "vận chuyển",
+                "node_type": "topic",
+                "note": "",
+                "phonetic": "/trӕnsˈpoːt/",
+                "synonyms": "",
+                "title": "Transport"
+            }
+        ],
+        "example": "",
+        "expanded": true,
+        "id": 1784211260938,
+        "image": [],
+        "meaning": "",
+        "node_type": "topic",
+        "note": "",
+        "phonetic": "",
+        "synonyms": "",
+        "title": "Tu"
+    }
+]
